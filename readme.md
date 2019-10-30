@@ -34,7 +34,7 @@ npm start
 ### 網頁運行網址
 
 ```
-http://localhost:3030/app
+http://localhost:3030
 ```
 
 ---
