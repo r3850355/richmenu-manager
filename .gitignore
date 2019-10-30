@@ -1,0 +1,11 @@
+.quasar
+.DS_Store
+.thumbs.db
+node_modules
+/client/node_modules
+
+# Editor directories and files
+.idea
+.vscode
+.png
+.env
