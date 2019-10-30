@@ -6,10 +6,16 @@ LINE 圖文選單管理器
 
 ### 設置
 
-填上你的 Channel Access Token
+
 
 ```
+// 在設置檔填上你的 Channel Access Token
 cp .env.exmaple .env
+
+// 建立上傳用資料夾
+mkdir public
+mkdir public/images
+mkidr public/upload
 
 ```
 
@@ -43,6 +49,17 @@ cd client/
 npm install
 npm install -g @quasar/cli
 ```
+### 設定檔位置
+
+`/client/quasar.conf.js`
+
+可設定參數：
+
+#### GET_TOKEN
+
+- true :  一進頁面就會帶token進來
+
+
 
 ### 運行
 

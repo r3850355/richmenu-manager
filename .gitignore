@@ -3,7 +3,7 @@
 .thumbs.db
 node_modules
 /client/node_modules
-
+/public
 # Editor directories and files
 .idea
 .vscode

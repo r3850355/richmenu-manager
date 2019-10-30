@@ -50,23 +50,26 @@ router.post('/default', (req, res) => {
 
 router.post('/upload', (req, res) => {
   const richMenu = new RichMenu(req.header('token'))
-  const form = new formidable.IncomingForm()
+  var form = new formidable.IncomingForm()
   form.uploadDir = 'public/upload'
-  form.parse(req)
-  .on('file', (name, file) => {
-    // console.log(file.path)
+
+  form.on('error', (err) => {
+    console.error('上傳圖片發生錯誤', err)
+    throw err
+  })
+  form.onPart = function(part) {
+    form.handlePart(part)
+  }
+  form.on('file', function (name, file) {
+    console.log('上傳的檔案，儲存於：' + file.path)
     richMenu.uploadRichMenuImage(req.header('X-richMenu-ID'), file.path).then(() => {
       res.send('ok')
     }).catch(() => {
-      // 123
+      res.status(403)
     })
-  })
-  .on('error', (err) => {
-    console.error('Error', err)
-    throw err
-  })
+  });
+  form.parse(req)
   
-  res.send('Thank you')
 })
 
 module.exports = router

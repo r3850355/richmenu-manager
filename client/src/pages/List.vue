@@ -5,7 +5,7 @@
         <div @contextmenu.prevent="$refs.menu.open" @mouseover="targetMenu = menu">
           <q-card-section>
             <q-icon name="web" style="font-size: 24px;"></q-icon>
-            <q-chip color="red" text-color="white" icon="star" label="預設" dense v-if="menu.default"/>
+            <q-chip color="yellow-10" text-color="white" icon="star" label="預設" dense v-if="menu.default"/>
             <b class="q-ml-sm">{{ menu.name}}</b>
           </q-card-section>
           <q-separator color="faded" inset />
@@ -26,6 +26,9 @@
           </q-card-section>
         </div>
       </q-card>
+      <div v-if="listSize === 0">
+        <h6>你還沒有半個RichMenu，快從左邊選單建立一個吧！</h6>
+      </div>
       <vue-context ref="menu">
         <li>
             <a @click="jsonDialog = true">查看JSON</a>
@@ -80,6 +83,7 @@
 <script>
 import { VueContext } from 'vue-context'
 import VueJsonPretty from 'vue-json-pretty'
+import _ from 'lodash'
 export default {
   name: 'PageIndex',
   components: {
@@ -143,6 +147,9 @@ export default {
     }
   },
   computed: {
+    listSize () {
+      return _.size(this.$store.state.richMenu.list)
+    },
     list () {
       return this.$store.state.richMenu.list
     },

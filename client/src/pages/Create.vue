@@ -21,7 +21,7 @@
       <div class="col-sm-12 col-md-6 q-pa-md q-gutter-md">
         <q-input label="名稱" filled :value="menuJSON.name" @change="el => { editJSON('name', el) }"></q-input>
         <q-input label="聊天列標題" filled :value="menuJSON.chatBarText" @change="el => { editJSON('chatBarText', el) }"></q-input>
-        <q-checkbox :value="menuJSON.selected" label="自動設為預設" @input="el => { editJSON('selected', el) }"/>
+        <q-checkbox :value="menuJSON.selected" label="預設為顯示選單" @input="el => { editJSON('selected', el) }"/>
         <div class="row">
           <div class="col-6"><q-input label="寬" outlined :value="menuJSON.size.width" readonly></q-input></div>
           <div class="col-6"><q-input label="高" outlined :value="menuJSON.size.height" readonly></q-input></div>

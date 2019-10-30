@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Line Richmenu Manager
+          Line Richmenu Manager 圖文選單管理器
         </q-toolbar-title>
 
         <div>v{{ version }}</div>
@@ -107,6 +107,16 @@
           <q-item-section>
             <q-item-label>下載 LINE 設計規範樣版</q-item-label>
             <q-item-label caption>developers.line.biz</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item-label header>其他</q-item-label>
+          <q-item clickable tag="a" target="_blank" href="https://github.com/r3850355/richmenu-manager">
+          <q-item-section avatar>
+            <q-icon name="code" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>GitHub 專案</q-item-label>
+            <q-item-label caption>快來幫我點星星～</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>

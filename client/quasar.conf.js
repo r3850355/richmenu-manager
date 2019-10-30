@@ -3,6 +3,10 @@
 
 module.exports = function (ctx) {
   return {
+    htmlVariables: {
+      title: '圖文選單管理器',
+      description: '圖文選單管理器'
+    },
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
@@ -66,8 +70,8 @@ module.exports = function (ctx) {
       // preloadChunks: false,
       // extractCSS: false,
       env: {
-        GET_TOKEN: false,
-        WEB_VERSION: JSON.stringify('1.0.1'),
+        GET_TOKEN: true,
+        WEB_VERSION: JSON.stringify('1.0.2'),
         // API_URL: JSON.stringify('https://richmenu.renzhou.dev')
         API_URL: JSON.stringify('http://localhost:3030')
       },
