@@ -65,7 +65,7 @@ router.post('/upload', (req, res) => {
     richMenu.uploadRichMenuImage(req.header('X-richMenu-ID'), file.path).then(() => {
       res.send('ok')
     }).catch(() => {
-      res.status(403)
+      res.status(500).send('error')
     })
   });
   form.parse(req)

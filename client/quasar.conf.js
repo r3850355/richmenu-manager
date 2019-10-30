@@ -71,7 +71,7 @@ module.exports = function (ctx) {
       // extractCSS: false,
       env: {
         GET_TOKEN: true,
-        WEB_VERSION: JSON.stringify('1.0.2'),
+        WEB_VERSION: JSON.stringify('1.0.3'),
         // API_URL: JSON.stringify('https://richmenu.renzhou.dev')
         API_URL: JSON.stringify('http://localhost:3030')
       },

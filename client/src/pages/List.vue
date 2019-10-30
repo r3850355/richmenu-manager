@@ -71,6 +71,7 @@
                 accept=".jpg, image/*"
                 :headers="[{name: 'X-richMenu-ID', value: targetMenu.richMenuId }, {name: 'token', value: $store.state.richMenu.accessToken }]"
                 @uploaded="uploaded"
+                @failed="uploadFailed"
               />
             </div>
           </q-card-section>
@@ -104,6 +105,13 @@ export default {
         this.$store.dispatch('richMenu/getList')
         this.imageUploadDialog = false
       }, 1000)
+    },
+    uploadFailed () {
+      this.$q.notify({
+        message: '圖片格式或大小有誤',
+        color: 'red',
+        timeout: 3000
+      })
     },
     deleteRichMenu () {
       this.$q.dialog({
