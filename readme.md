@@ -2,6 +2,8 @@
 
 LINE 圖文選單管理器
 
+[DEMO](https://richmenu.renzhou.dev)
+
 ## 使用方式
 
 ### 設置
