@@ -11,7 +11,7 @@
           <q-separator color="faded" inset />
           <q-card-section style="display:flex;align-items:center;justify-content:center;height: 280px">
             <q-img
-              :src="menu.image"
+              :src="api_url + menu.image"
               v-if="menu.image"
             >
             </q-img>

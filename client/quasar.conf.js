@@ -67,9 +67,9 @@ module.exports = function (ctx) {
       // extractCSS: false,
       env: {
         GET_TOKEN: false,
-        WEB_VERSION: JSON.stringify('1.0.0'),
-        API_URL: JSON.stringify('https://richmenu.renzhou.dev')
-        // API_URL: JSON.stringify('http://localhost:3030')
+        WEB_VERSION: JSON.stringify('1.0.1'),
+        // API_URL: JSON.stringify('https://richmenu.renzhou.dev')
+        API_URL: JSON.stringify('http://localhost:3030')
       },
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
       extendWebpack (cfg) {
