@@ -11,7 +11,7 @@ router.get('/token', (req, res) => {
   res.send(process.env.CHANNEL_ACCESS_TOKEN)
 })
 
-router.get('/list', (req, res) => {
+router.post('/list', (req, res) => {
   const richMenu = new RichMenu(req.header('token'))
   richMenu.getRichMenuList().then(data => {
     res.send(data)

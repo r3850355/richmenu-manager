@@ -17,7 +17,7 @@ export function getList ({ state, commit }, token) {
       axios.defaults.headers.common['token'] = state.accessToken
     }
     Loading.show()
-    axios.get(`${process.env.API_URL}/api/list`, { params: { token: token } }).then(res => {
+    axios.post(`${process.env.API_URL}/api/list`).then(res => {
       Loading.hide()
       if (res.data !== 'error') {
         commit('SET_LIST', res.data)
