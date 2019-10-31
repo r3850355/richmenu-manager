@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <div>
+    <div class="q-pa-md">
       <div class="text-center"><h6>免責聲明</h6></div>
       <p>一.  本網站不會紀錄您的 LINE Channel Access Token 及相關操作數據</p>
       <p>二.  本網站透過 API 取得 RichMenu 圖片時，該圖檔會暫存於本伺服器，並會定期將其檔案清除</p>

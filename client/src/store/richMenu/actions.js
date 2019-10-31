@@ -77,3 +77,18 @@ export function postDefault ({ state, commit }, data) {
     })
   })
 }
+
+export function cancelDefault ({ state, commit }) {
+  return new Promise((resolve, reject) => {
+    axios.defaults.headers.common['token'] = state.accessToken
+    axios.delete(`${process.env.API_URL}/api/default`).then(res => {
+      if (res.data === 'ok') {
+        resolve()
+      } else {
+        reject()
+      }
+    }).catch(() => {
+      reject()
+    })
+  })
+}

@@ -2,7 +2,7 @@
   <q-page class="q-pa-lg bg-grey-4">
     <div class="row items-start q-gutter-md " style="justify-content:center;">
       <q-card class="my-card" v-for="menu in list" :key="menu.richMenuId" >
-        <div @contextmenu.prevent="$refs.menu.open" @mouseover="targetMenu = menu">
+        <div>
           <q-card-section>
             <q-icon name="web" style="font-size: 24px;"></q-icon>
             <q-chip color="yellow-10" text-color="white" icon="star" label="預設" dense v-if="menu.default"/>
@@ -15,7 +15,10 @@
               v-if="menu.image"
             >
             </q-img>
-            <p v-else>此 RichMenu 沒有圖片</p>
+            <div class="text-center" v-else>
+              <p>此 RichMenu 沒有圖片</p>
+              <q-btn @click="imageUploadDialog = true; targetMenu = menu">上傳圖片</q-btn>
+            </div>
             <!-- <div style="position:absolute; top:220px; background: rgba(0,0,0,0.7); width: 100%; height: 60px;text-align: center">
               <div style="color:#fff; margin-top:18px; font-weight: 800">
                 {{ menu.name}}
@@ -24,12 +27,20 @@
               </div>
             </div> -->
           </q-card-section>
+          <q-card-section >
+            <div class="row">
+              <q-btn class="col-4" flat icon="code" @click="jsonDialog = true; targetMenu = menu">查看JSON</q-btn>
+              <q-btn class="col-4" flat icon="star_border" v-if="!menu.default" @click="setDefault(menu)">設為預設</q-btn>
+              <q-btn class="col-4" flat icon="star" @click="cancelDefault" v-else>取消預設</q-btn>
+              <q-btn class="col-4" flat icon="delete" color="red" @click="deleteRichMenu(menu)">刪除</q-btn>
+            </div>
+          </q-card-section>
         </div>
       </q-card>
       <div v-if="listSize === 0">
         <h6>你還沒有半個RichMenu，快從左邊選單建立一個吧！</h6>
       </div>
-      <vue-context ref="menu">
+      <!-- <vue-context ref="menu">
         <li>
             <a @click="jsonDialog = true">查看JSON</a>
         </li>
@@ -42,7 +53,7 @@
         <li>
             <a @click="deleteRichMenu" style="color: red;">刪除</a>
         </li>
-      </vue-context>
+      </vue-context> -->
       <!-- SHOW JSON DIALOG -->
       <q-dialog v-model="jsonDialog">
         <q-card>
@@ -82,13 +93,12 @@
 </template>
 
 <script>
-import { VueContext } from 'vue-context'
+// import { VueContext } from 'vue-context'
 import VueJsonPretty from 'vue-json-pretty'
 import _ from 'lodash'
 export default {
   name: 'PageIndex',
   components: {
-    VueContext,
     VueJsonPretty
   },
   data () {
@@ -113,7 +123,7 @@ export default {
         timeout: 3000
       })
     },
-    deleteRichMenu () {
+    deleteRichMenu (menu) {
       this.$q.dialog({
         title: '注意',
         message: '確定刪除此 RichMenu，刪除後無法復原',
@@ -121,7 +131,7 @@ export default {
         ok: '刪除'
       }).onOk(() => {
         // 刪除
-        this.$store.dispatch('richMenu/postDelete', { id: this.targetMenu.richMenuId }).then(() => {
+        this.$store.dispatch('richMenu/postDelete', { id: menu.richMenuId }).then(() => {
           this.$q.notify({
             message: '刪除成功囉',
             color: 'info',
@@ -137,19 +147,49 @@ export default {
         })
       })
     },
-    setDefault () {
-      this.$store.dispatch('richMenu/postDefault', { id: this.targetMenu.richMenuId }).then(() => {
-        this.$store.dispatch('richMenu/getList')
-        this.$q.notify({
-          message: '設為預設囉!',
-          color: 'info',
-          timeout: 2000
+    setDefault (menu) {
+      this.$q.dialog({
+        title: '注意',
+        message: '確定將此 RichMenu 設為預設？',
+        cancel: '取消',
+        ok: '確定'
+      }).onOk(() => {
+        this.$store.dispatch('richMenu/postDefault', { id: menu.richMenuId }).then(() => {
+          this.$store.dispatch('richMenu/getList')
+          this.$q.notify({
+            message: '設為預設囉!',
+            color: 'info',
+            timeout: 2000
+          })
+        }).catch(() => {
+          this.$q.notify({
+            message: '設置失敗了',
+            color: 'warning',
+            timeout: 2000
+          })
         })
-      }).catch(() => {
-        this.$q.notify({
-          message: '設置失敗了',
-          color: 'warning',
-          timeout: 2000
+      })
+    },
+    cancelDefault () {
+      this.$q.dialog({
+        title: '注意',
+        message: '確定要取消預設? 取消後用會端將不會顯示任何RichMenu',
+        cancel: '取消',
+        ok: '確定'
+      }).onOk(() => {
+        this.$store.dispatch('richMenu/cancelDefault').then(() => {
+          this.$store.dispatch('richMenu/getList')
+          this.$q.notify({
+            message: '已經取消預設囉!',
+            color: 'info',
+            timeout: 2000
+          })
+        }).catch(() => {
+          this.$q.notify({
+            message: '設置失敗了',
+            color: 'warning',
+            timeout: 2000
+          })
         })
       })
     }

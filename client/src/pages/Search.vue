@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <div class="text-center">
-      <q-input outlined label="Channel Access Token" style="width: 600px" v-model="token" :error="tokenError"></q-input>
+      <q-input outlined label="Channel Access Token" class="searchInput" v-model="token" :error="tokenError"></q-input>
       <q-btn class="q-mt-md" @click="getList()">列出所有的 RichMenu</q-btn>
     </div>
   </q-page>
@@ -36,3 +36,15 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+  @media (min-width: 0px)
+    .searchInput
+      width 300px
+  @media (min-width: 599px)
+    .searchInput
+      width 500px
+  @media (min-width: 1439px)
+    .searchInput
+      width 600px
+</style>

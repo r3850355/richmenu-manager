@@ -38,6 +38,16 @@ router.post('/create', (req, res) => {
   })
 })
 
+router.delete('/default', (req, res) => {
+  const richMenu = new RichMenu(req.header('token'))
+  richMenu.cancelDefaultRichMenu().then(() => {
+    res.send('ok')
+  }).catch(err => {
+    console.log(err)
+    res.send('error')
+  })
+})
+
 router.post('/default', (req, res) => {
   const richMenu = new RichMenu(req.header('token'))
   richMenu.setDefaultRichMenu(req.body.id).then(() => {
