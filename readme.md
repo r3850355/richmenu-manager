@@ -11,7 +11,7 @@ LINE 圖文選單管理器
 
 
 // 初始化專案
-// cp .env.exmaple .env 在設置檔填上你的 Channel Access Token
+// cp .env.example .env 在設置檔填上你的 Channel Access Token
 // mkdir public/images && mkdir public/upload 建立上傳用資料夾
 ```
 npm run initProject
