@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "initProject": "cp -f .env.example .env && mkdir -p public/images && mkdir -p public/upload",
+    "cleanProject": "rm -f public/images/* && rm -f public/upload/* "
   },
   "author": "RenZh0u",
   "license": "ISC",
