@@ -10,15 +10,11 @@ LINE 圖文選單管理器
 
 
 
+// 初始化專案
+// cp .env.example .env 在設置檔填上你的 Channel Access Token
+// mkdir public/images && mkdir public/upload 建立上傳用資料夾
 ```
-// 在設置檔填上你的 Channel Access Token
-cp .env.exmaple .env
-
-// 建立上傳用資料夾
-mkdir public
-mkdir public/images
-mkidr public/upload
-
+npm run initProject
 ```
 
 ### 安裝
@@ -37,6 +33,13 @@ npm start
 
 ```
 http://localhost:3030
+```
+
+### script
+
+// 清除上傳用資料夾內的檔案
+```
+npm run cleanProject
 ```
 
 ---
